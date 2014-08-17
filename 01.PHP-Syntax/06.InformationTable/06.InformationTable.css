@@ -1,0 +1,6 @@
+table tr td:first-child {
+    background: yellow;
+}
+table tr td:last-child {
+    font-weight: bold;
+}
