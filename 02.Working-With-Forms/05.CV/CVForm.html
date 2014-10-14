@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CV Generator</title>
+</head>
+<body>
+<form action="ProcessForm.php" method="post">
+    <fieldset>
+        <legend>Personal Information</legend>
+        <div><input type="text" name="fname" placeholder="First Name"/></div>
+        <div><input type="text" name="lname" placeholder="Last Name"/></div>
+        <div><input type="text" name="email" placeholder="E-mail"/></div>
+        <div><input type="text" name="number" placeholder="Phone Number"/></div>
+        <div>
+            <input type="radio" name="sex" id="male" value="male" checked="checked"/><label for="male">Male</label>
+            <input type="radio" name="sex" id="female" value="female"/><label for="female">Female</label>
+        </div>
+        <div>Birth Date</div>
+        <div><input type="date" name="birthdate"/></div>
+        <div>Nationality</div>
+        <div>
+            <select name="nationality">
+                <option value="Bulgarian">Bulgarian</option>
+                <option value="American">American</option>
+                <option value="Indian">Indian</option>
+                <option value="Russian">Russian</option>
+            </select>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Last Work Position</legend>
+        <div>Company name: <input type="text" name="company-name"/></div>
+        <div>From: <input type="date" name="company-from"/></div>
+        <div>To: <input type="date" name="company-to"/></div>
+    </fieldset>
+    <fieldset>
+        <legend>Computer Skills</legend>
+        <div>Programming languages</div>
+        <div id="computer-languages">
+
+        </div>
+        <input type="button" onclick="addLanguage('computer-language')" value="Add Language">
+        <input type="button" onclick="removeLanguage('computer-language')" value="Remove Language">
+    </fieldset>
+    <fieldset>
+        <legend>Other Skills</legend>
+        <div>Languages</div>
+        <div id="human-languages">
+
+        </div>
+        <input type="button" onclick="addLanguage('human-language')" value="Add Language">
+        <input type="button" onclick="removeLanguage('human-language')" value="Remove Language">
+
+        <div>Drivers license</div>
+        <label for="B">B</label><input type="checkbox" id="B" name="licenses[]" value="B"/>
+        <label for="A">A</label><input type="checkbox" id="A" name="licenses[]" value="A"/>
+        <label for="C">C</label><input type="checkbox" id="C" name="licenses[]" value="C"/>
+    </fieldset>
+    <input value="Generate CV" type="submit"/>
+</form>
+<script src="script.js"></script>
+</body>
+</html>
