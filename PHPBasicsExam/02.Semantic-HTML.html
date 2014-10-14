@@ -1,0 +1,39 @@
+<?php
+$html = $_GET['html'];
+//$html = ' <p class = "section" >
+//    <div style = "border: 1px" id = "header" >
+//        Header
+//        <div id = "nav" >
+//            Nav
+//        </div>   <!--   nav   -->
+//    </div>  <!--header-->
+//  </p> <!-- end paragraph section -->';
+
+$result = '';
+$findDivRegex = '/(\s*)<div\s+(\s*\w+\s*=\s*".+")*\s*[id|class]+\s*=\s*"(header|nav|main|article|section|aside|footer)+"\s*(\s*\w+\s*=\s*".+")*\s*>/';
+$findEndRegex = '/(\s*)<\/div>\s*<!--\s*(header|nav|main|article|section|aside|footer)+\s*-->/';
+
+$html = preg_split("/\n/", $html);
+
+foreach ($html as $row) {
+    $transform = false;
+    if (preg_match($findDivRegex, $row, $transformMatch)) {
+        $transform = true;
+        $result .= $transformMatch[1] . '<' . $transformMatch[3];
+        if (!empty($transformMatch[2])) {
+            $result .= ' ' . $transformMatch[2];
+        }
+        if (!empty($transformMatch[4])) {
+            $result .= ' ' . $transformMatch[4];
+        }
+        $result .= ">\n";
+    }
+    if (preg_match($findEndRegex, $row, $endMatch)) {
+        $transform = true;
+        $result .= $endMatch[1] . '</' . $endMatch[2] . '>' . "\n";
+    }
+    if (!$transform) {
+        $result .= $row . "\n";
+    }
+}
+echo $result;
